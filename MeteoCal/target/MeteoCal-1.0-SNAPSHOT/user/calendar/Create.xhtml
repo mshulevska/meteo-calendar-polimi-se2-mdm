@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CalendarCreateDlg" widgetVar="CalendarCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCalendarTitle}">
+            <h:form id="CalendarCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{calendarController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCalendarLabel_idCalendar}" for="idCalendar" />
+                        <p:inputText id="idCalendar" value="#{calendarController.selected.idCalendar}" title="#{bundle.CreateCalendarTitle_idCalendar}" required="true" requiredMessage="#{bundle.CreateCalendarRequiredMessage_idCalendar}"/>
+                        <p:outputLabel value="#{bundle.CreateCalendarLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{calendarController.selected.name}" title="#{bundle.CreateCalendarTitle_name}" required="true" requiredMessage="#{bundle.CreateCalendarRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundle.CreateCalendarLabel_visibility}" for="visibility" />
+                        <p:selectBooleanCheckbox id="visibility" value="#{calendarController.selected.visibility}" required="true" requiredMessage="#{bundle.EditCalendarRequiredMessage_visibility}"/>
+                        <p:outputLabel value="#{bundle.CreateCalendarLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy" value="#{calendarController.selected.createdAt}" title="#{bundle.EditCalendarTitle_createdAt}" required="true" requiredMessage="#{bundle.EditCalendarRequiredMessage_createdAt}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCalendarLabel_updatedAt}" for="updatedAt" />
+                        <p:calendar id="updatedAt" pattern="MM/dd/yyyy" value="#{calendarController.selected.updatedAt}" title="#{bundle.EditCalendarTitle_updatedAt}" required="true" requiredMessage="#{bundle.EditCalendarRequiredMessage_updatedAt}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCalendarLabel_useridUser}" for="useridUser" />
+                        <p:selectOneMenu id="useridUser" value="#{calendarController.selected.useridUser}" required="true" requiredMessage="#{bundle.EditCalendarRequiredMessage_useridUser}">
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="useridUserItem"
+                                           itemValue="#{useridUserItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{calendarController.create}" value="#{bundle.Save}" update="display,:CalendarListForm:datalist,:growl" oncomplete="handleSubmit(args,'CalendarCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CalendarCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
