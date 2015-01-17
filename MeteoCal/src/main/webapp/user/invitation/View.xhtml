@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InvitationViewDlg" widgetVar="InvitationViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewInvitationTitle}">
+            <h:form id="InvitationViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{invitationController.selected != null}">
+                        <h:outputText value="#{bundle.ViewInvitationLabel_idInvitation}"/>
+                        <h:outputText value="#{invitationController.selected.idInvitation}" title="#{bundle.ViewInvitationTitle_idInvitation}"/>
+                        <h:outputText value="#{bundle.ViewInvitationLabel_eventidEvent}"/>
+                        <h:outputText value="#{invitationController.selected.eventidEvent}" title="#{bundle.ViewInvitationTitle_eventidEvent}"/>
+                        <h:outputText value="#{bundle.ViewInvitationLabel_fromUser}"/>
+                        <h:outputText value="#{invitationController.selected.fromUser}" title="#{bundle.ViewInvitationTitle_fromUser}"/>
+                        <h:outputText value="#{bundle.ViewInvitationLabel_toUser}"/>
+                        <h:outputText value="#{invitationController.selected.toUser}" title="#{bundle.ViewInvitationTitle_toUser}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="InvitationViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

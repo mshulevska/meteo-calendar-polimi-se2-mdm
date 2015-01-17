@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="user/calendar/List.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="index.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="user/event/View.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="welcomePrimefaces.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="user/calendar/View.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="user/location/View.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="user/location/Edit.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="user/event/Edit.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="user/home.xhtml" x="150" y="450" zoom="false"/>
+        <Node id="login.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="user/calendar/Edit.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="user/location/Create.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="user/invitation/List.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="user/invitation/View.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="user/event/Create.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="template.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="user/event/List.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="user/invitation/Create.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="register.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="user/calendar/Create.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="user/invitation/Edit.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="user/location/List.xhtml" x="650" y="600" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>
