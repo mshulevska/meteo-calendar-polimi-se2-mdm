@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>login_failure</from-outcome>
+            <redirect>true</redirect>
+            <to-view-id>/error.xhtml</to-view-id>            
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>login_success</from-outcome>
+             <redirect>true</redirect>
+            <to-view-id>/users/home.xhtml</to-view-id>
+            
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>register</from-outcome>
+             <redirect>true</redirect>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/users/home.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout_success</from-outcome>
+            <redirect>true</redirect>
+            <to-view-id>/index.xhtml</to-view-id>
+             
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>logout_failure</from-outcome>
+            <redirect>true</redirect>
+            <to-view-id>/error.xhtml</to-view-id>
+             
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
