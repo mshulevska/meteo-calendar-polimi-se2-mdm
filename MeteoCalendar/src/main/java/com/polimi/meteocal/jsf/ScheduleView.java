@@ -1,25 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.polimi.meteocal.jsf;
-
+ 
 import com.polimi.meteocal.entities.Event;
 import com.polimi.meteocal.entities.Location;
 import com.polimi.meteocal.session.EventFacade;
 import com.polimi.meteocal.session.LocationFacade;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
-import javafx.event.ActionEvent;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
+import javax.inject.Named;
+ 
 import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
@@ -27,15 +23,17 @@ import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
-
-/**
- *
- * @author miter_000
- */
+ 
 @Named(value = "scheduleView")
 @SessionScoped
 public class ScheduleView implements Serializable {
  
+    private ScheduleModel eventModel;
+    
+    private Event event2;
+    private Location location;
+    
+    
     @EJB
     private EventFacade ef;
     
@@ -44,56 +42,29 @@ public class ScheduleView implements Serializable {
     
     @Inject
     private UserController uc;
-    
-    private Location loc;
-    
-    
-    
-
-    public Location getLoc() {
-        
-        if(loc==null) loc = new Location();
-        
-        return loc;
-    }
-
-    public void setLoc(Location loc) {
-        this.loc = loc;
-    }
-    
-            
-    private Event nevent;
-
-    public Event getNevent() {
-        
-        if(nevent==null)
-        {
-            nevent = new Event();
-        }
-                
-        return nevent;
-    }
-
-    public void setNevent(Event nevent) {
-        this.nevent = nevent;
-    }
-    
-    private ScheduleModel eventModel;
- 
+     
     private ScheduleEvent event = new DefaultScheduleEvent();
- 
+    //private ScheduleEvent event = new MCEvent();
+    
     @PostConstruct
     public void init() {
         eventModel = new DefaultScheduleModel();
-        
-    }     
-    
+        eventModel.addEvent(new DefaultScheduleEvent("Champions League Match",today().getTime(),today().getTime()));
+                 
+    }
+     
+     
+    public Date getInitialDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(calendar.get(Calendar.YEAR), Calendar.FEBRUARY, calendar.get(Calendar.DATE), 0, 0, 0);
+         
+        return calendar.getTime();
+    }
      
     public ScheduleModel getEventModel() {
         return eventModel;
     }
-     
-    
+
  
     private Calendar today() {
         Calendar calendar = Calendar.getInstance();
@@ -102,7 +73,7 @@ public class ScheduleView implements Serializable {
         return calendar;
     }
      
-         
+     
     public ScheduleEvent getEvent() {
         return event;
     }
@@ -112,14 +83,44 @@ public class ScheduleView implements Serializable {
     }
      
     public void addEvent(ActionEvent actionEvent) {
-        if(event.getId() == null)
+        if(event.getId() == null){
+            
+            if( event2 == null)  event2 = new Event();
+            
+            if(location==null) location = new Location();
+            
+            event2.setDescription(event.getDescription());
+            event2.setName(event.getTitle());
+            event2.setEventTime(event.getStartDate());
+            event2.setVisibility(true);
+            event2.setUserEmail(uc.getName());
+            event2.setCreatedAt(new Date());
+            location.setCity("Milano");
+            location.setStreetName("Via Golgi");
+            event2.setLocationidLocation(location);
             eventModel.addEvent(event);
-        else
+        }
+        else{
+            
+            if( event2 == null)  event2 = new Event();
+            
+            if(location==null) location = new Location();
+            
+            event2.setDescription(event.getDescription());
+            event2.setName(event.getTitle());
+            event2.setEventTime(event.getStartDate());
+            event2.setVisibility(true);
+            event2.setUserEmail(uc.getName());
+            event2.setCreatedAt(new Date());
+            location.setCity("Milano");
+            location.setStreetName("Via Golgi");
+            event2.setLocationidLocation(location);
             eventModel.updateEvent(event);
-         
+        }
+        
         event = new DefaultScheduleEvent();
-        
-        
+        lf.save(location);
+        ef.save(event2);
     }
      
     public void onEventSelect(SelectEvent selectEvent) {
@@ -145,5 +146,4 @@ public class ScheduleView implements Serializable {
     private void addMessage(FacesMessage message) {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-
 }

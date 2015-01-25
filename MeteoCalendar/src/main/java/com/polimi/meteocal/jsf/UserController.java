@@ -196,8 +196,8 @@ public class UserController implements Serializable {
 
     
     //added to get the logged user name
-    public String getName() {
-        return ejbFacade.getLoggedUser().getEmail();
+    public User getName() {
+        return ejbFacade.getLoggedUser();
     }
     
     

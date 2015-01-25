@@ -19,7 +19,7 @@ and open the template in the editor.
     <h:body>
         
         <div>
-            <h4>Logged user: #{userController.getName()} <h:link outcome="#{loginBean.logout()}" value="logout" /> </h4>
+            <h4>Logged user: #{userController.name.email} <h:link outcome="#{loginBean.logout()}" value="logout" /> </h4>
         </div>
         
         <div>
